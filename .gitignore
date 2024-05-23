@@ -1,0 +1,8 @@
+mpv/
+raycast/
+omf/
+
+# MACOS files 
+.DS_Store
+.AppleDouble
+.LSOverride
