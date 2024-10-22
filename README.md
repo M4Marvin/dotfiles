@@ -18,17 +18,6 @@ This repository contains my personal configuration files (dotfiles) for various 
 - **mise**: Runtime version manager configuration
 - **wtf**: Personal information dashboard settings
 
-### Media & Utilities
-
-- **MPV**: Media player configuration with Anime4K shaders for high-quality anime playback
-- **qBittorrent**: Torrent client settings
-- **Raycast**: Productivity tool extensions including:
-  - Google Translate
-  - Color Picker
-  - Simple Icons
-  - VSCode Integration
-  - System Monitor
-
 ### File Management
 
 - **bat**: Modern `cat` replacement configuration
