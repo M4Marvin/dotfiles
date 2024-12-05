@@ -1,30 +1,3 @@
-# Alacritty - TOML configuration file format.
-
-# DESCRIPTION 
-# An example configuration file for Alacritty preconfigured with default values.
-
-# SYNTAX
-# Alacritty's configuration file uses the TOML format. 
-# The format's specification can be found at https://toml.io/en/v1.0.0.
-
-# GENERAL
-
-# import = ["<string>",]
-
-# Import additional configuration files.
-# Imports are loaded in order, skipping all missing files, with the importing file being loaded last. If a field is already present in a previous import, it will be replaced.
-# All imports must either be absolute paths starting with /, or paths relative to the user's home directory starting with ~/.
-
-# Example:
-
-# import = [
-# "~/.config/alacritty/base16-dark.toml",
-# "~/.config/alacritty/keybindings.toml",
-# ]
-
-import = [
-  "~/.config/alacritty/catppuccin-mocha.toml"
-]
 
 # live_config_reload = true | false
 # Live config reload (changes require restart)
@@ -464,6 +437,35 @@ thickness = 0.15
 
 [mouse]
 hide_when_typing = false
+
+[general]
+# Alacritty - TOML configuration file format.
+
+# DESCRIPTION 
+# An example configuration file for Alacritty preconfigured with default values.
+
+# SYNTAX
+# Alacritty's configuration file uses the TOML format. 
+# The format's specification can be found at https://toml.io/en/v1.0.0.
+
+# GENERAL
+
+# import = ["<string>",]
+
+# Import additional configuration files.
+# Imports are loaded in order, skipping all missing files, with the importing file being loaded last. If a field is already present in a previous import, it will be replaced.
+# All imports must either be absolute paths starting with /, or paths relative to the user's home directory starting with ~/.
+
+# Example:
+
+# import = [
+# "~/.config/alacritty/base16-dark.toml",
+# "~/.config/alacritty/keybindings.toml",
+# ]
+
+import = [
+  "~/.config/alacritty/catppuccin-mocha.toml"
+]
 
 
 # HINTS

@@ -41,4 +41,7 @@ starship init fish | source
 # Aliases 
 alias ls="lsd -aX1l"
 
+zoxide init fish --cmd cd | source 
+
 /Users/marvinprakash/.local/bin/mise activate fish | source
+
