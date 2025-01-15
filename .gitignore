@@ -12,5 +12,4 @@ zed/
 **/*.log
 **/*.ini
 
-qBittorrent/qBittorrent-data.ini
-qBittorrent/qBittorrent.ini
+qBittorrent/

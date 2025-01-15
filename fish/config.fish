@@ -1,8 +1,8 @@
 if status is-interactive
-
 set fish_greeting
-
 end
+
+source "$HOME/.cargo/env.fish"
 
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
@@ -10,15 +10,15 @@ set --export PATH $BUN_INSTALL/bin $PATH
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-if test -f /Users/marvinprakash/miniforge3/bin/conda
-    eval /Users/marvinprakash/miniforge3/bin/conda "shell.fish" "hook" $argv | source
-else
-    if test -f "/Users/marvinprakash/miniforge3/etc/fish/conf.d/conda.fish"
-        . "/Users/marvinprakash/miniforge3/etc/fish/conf.d/conda.fish"
-    else
-        set -x PATH "/Users/marvinprakash/miniforge3/bin" $PATH
-    end
-end
+# if test -f /Users/marvinprakash/miniforge3/bin/conda
+#     eval /Users/marvinprakash/miniforge3/bin/conda "shell.fish" "hook" $argv | source
+# else
+#     if test -f "/Users/marvinprakash/miniforge3/etc/fish/conf.d/conda.fish"
+#         . "/Users/marvinprakash/miniforge3/etc/fish/conf.d/conda.fish"
+#     else
+#         set -x PATH "/Users/marvinprakash/miniforge3/bin" $PATH
+#     end
+# end
 # <<< conda initialize <<<
 
 # Add Visual Studio Code (code)
@@ -41,9 +41,8 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 starship init fish | source
 
 # Aliases 
-alias ls="lsd -aX1l"
+alias ls="lsd"
 
 zoxide init fish --cmd cd | source 
 
-/Users/marvinprakash/.local/bin/mise activate fish | source
 
