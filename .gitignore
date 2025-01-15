@@ -1,15 +1,15 @@
 mpv/
 raycast/
 omf/
+qBittorrent/
+zed/
 
 # MACOS files 
 .DS_Store
 .AppleDouble
 .LSOverride
 
-zed/
 
 **/*.log
 **/*.ini
 
-qBittorrent/

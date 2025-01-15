@@ -45,4 +45,12 @@ alias ls="lsd"
 
 zoxide init fish --cmd cd | source 
 
+# vim config
+function check_vim_config
+    echo "Vim configuration file: $(vim --version | grep 'system vimrc file' | awk '{print $NF}')"
+    echo "User vimrc file: $(vim --version | grep 'user vimrc file' | awk '{print $NF}')"
+end
+check_vim_config
+
+
 
