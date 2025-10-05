@@ -1,0 +1,15 @@
+background-opacity = 0.8
+background-blur-radius = 10
+
+font-family = GoogleSansCode Nerd Font Mono
+font-style = SemiBold
+font-size = 18
+
+theme = catppuccin-mocha
+
+window-decoration = true
+
+macos-titlebar-style = transparent
+gtk-titlebar = true
+keybind = shift+enter=text:\n
+

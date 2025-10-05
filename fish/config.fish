@@ -10,15 +10,15 @@ set --export PATH $BUN_INSTALL/bin $PATH
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-# if test -f /Users/marvinprakash/miniforge3/bin/conda
-#     eval /Users/marvinprakash/miniforge3/bin/conda "shell.fish" "hook" $argv | source
-# else
-#     if test -f "/Users/marvinprakash/miniforge3/etc/fish/conf.d/conda.fish"
-#         . "/Users/marvinprakash/miniforge3/etc/fish/conf.d/conda.fish"
-#     else
-#         set -x PATH "/Users/marvinprakash/miniforge3/bin" $PATH
-#     end
-# end
+if test -f /Users/marvinprakash/miniforge3/bin/conda
+    eval /Users/marvinprakash/miniforge3/bin/conda "shell.fish" "hook" $argv | source
+else
+    if test -f "/Users/marvinprakash/miniforge3/etc/fish/conf.d/conda.fish"
+        . "/Users/marvinprakash/miniforge3/etc/fish/conf.d/conda.fish"
+    else
+        set -x PATH "/Users/marvinprakash/miniforge3/bin" $PATH
+    end
+end
 # <<< conda initialize <<<
 
 # Add Visual Studio Code (code)
@@ -50,7 +50,22 @@ function check_vim_config
     echo "Vim configuration file: $(vim --version | grep 'system vimrc file' | awk '{print $NF}')"
     echo "User vimrc file: $(vim --version | grep 'user vimrc file' | awk '{print $NF}')"
 end
-check_vim_config
+# check_vim_config
+
+# Android SDK
+set -x ANDROID_HOME $HOME/Library/Android/sdk
+set -x PATH $PATH $ANDROID_HOME/emulator
+set -x PATH $PATH $ANDROID_HOME/platform-tools
+
+thefuck --alias | source
+
+# Added by Windsurf
+fish_add_path /Users/marvinprakash/.codeium/windsurf/bin
+
+# Added by LM Studio CLI (lms)
+set -gx PATH $PATH /Users/marvinprakash/.lmstudio/bin
+# End of LM Studio CLI section
 
 
-
+# opencode
+fish_add_path /Users/marvinprakash/.opencode/bin
