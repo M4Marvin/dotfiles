@@ -1,7 +1,7 @@
 theme = Catppuccin Mocha
 font-family = Google Sans Code NF
 font-size = 14
-command = /opt/homebrew/bin/nu
+command = nu
 shell-integration = detect
 window-padding-x = 8
 window-padding-y = 8
