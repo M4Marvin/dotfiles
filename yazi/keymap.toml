@@ -1,0 +1,19 @@
+[[mgr.prepend_keymap]]
+on   = "!"
+run  = 'shell "$SHELL" --block'
+desc = "Open $SHELL here"
+
+[[mgr.prepend_keymap]]
+on   = "<C-p>"
+run  = "shell -- qlmanage -p %s"
+desc = "Quick Look preview"
+
+[[mgr.prepend_keymap]]
+on   = "q"
+run  = "plugin confirm-quit"
+desc = "Quit (confirm if multiple tabs)"
+
+[[input.prepend_keymap]]
+on   = "<Esc>"
+run  = "close"
+desc = "Cancel input"

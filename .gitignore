@@ -1,15 +1,13 @@
-mpv/
-raycast/
-omf/
-qBittorrent/
-zed/
-
-# MACOS files 
+# macOS files
 .DS_Store
 .AppleDouble
 .LSOverride
 
-
+# Generated / cache files
 **/*.log
-**/*.ini
+
+# Generated configs (rebuilt by tools)
+nushell/starship.nu
+nushell/carapace.nu
+nushell/mise.nu
 

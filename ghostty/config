@@ -1,15 +1,26 @@
-background-opacity = 0.8
-background-blur-radius = 10
+theme = Catppuccin Mocha
+font-family = Google Sans Code NF
+font-size = 14
+command = /opt/homebrew/bin/nu
+shell-integration = detect
+window-padding-x = 8
+window-padding-y = 8
+macos-titlebar-style = tabs
+background-opacity = 0.95
 
-font-family = GoogleSansCode Nerd Font Mono
-font-style = SemiBold
-font-size = 18
+custom-shader = shaders/cursor_warp.glsl
+custom-shader = shaders/ripple_cursor.glsl
+custom-shader-animation = always
 
-theme = catppuccin-mocha
-
-window-decoration = true
-
-macos-titlebar-style = transparent
-gtk-titlebar = true
-keybind = shift+enter=text:\n
-
+# Split / pane management (cmd+alt prefix)
+keybind = super+alt+h=goto_split:left
+keybind = super+alt+j=goto_split:down
+keybind = super+alt+k=goto_split:up
+keybind = super+alt+l=goto_split:right
+keybind = super+alt+bracket_left=goto_split:previous
+keybind = super+alt+bracket_right=goto_split:next
+keybind = super+alt+backslash=new_split:right
+keybind = super+alt+minus=new_split:down
+keybind = super+alt+enter=toggle_split_zoom
+keybind = super+alt+w=close_surface
+keybind = super+alt+equal=equalize_splits
