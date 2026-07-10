@@ -4,7 +4,7 @@ config-file = ?"~/.config/omarchy/current/theme/ghostty.conf"
 theme = Catppuccin Mocha
 font-family = Google Sans Code NF
 font-size = 14
-command = nu
+command = /Users/marvin/.cargo/bin/nu
 background-opacity = 0.95
 
 # Window
