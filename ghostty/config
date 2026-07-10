@@ -1,18 +1,39 @@
+# Dynamic theme colors
+config-file = ?"~/.config/omarchy/current/theme/ghostty.conf"
+
 theme = Catppuccin Mocha
 font-family = Google Sans Code NF
 font-size = 14
 command = /home/marvin/.cargo/bin/nu
-shell-integration = detect
-window-padding-x = 8
-window-padding-y = 8
-macos-titlebar-style = tabs
 background-opacity = 0.95
 
+# Window
+window-theme = ghostty
+window-padding-x = 14
+window-padding-y = 14
+macos-titlebar-style = tabs
+confirm-close-surface = false
+resize-overlay = never
+gtk-toolbar-style = flat
+
+# Cursor
+cursor-style = block
+cursor-style-blink = false
+
+# Shell
+shell-integration = detect
+shell-integration-features = no-cursor,ssh-env
+
+# Shaders
 custom-shader = shaders/cursor_warp.glsl
 custom-shader = shaders/ripple_cursor.glsl
 custom-shader-animation = always
 
-# Split / pane management (cmd+alt prefix)
+# Clipboard
+keybind = shift+insert=paste_from_clipboard
+keybind = control+insert=copy_to_clipboard
+
+# Split / pane management
 keybind = super+alt+h=goto_split:left
 keybind = super+alt+j=goto_split:down
 keybind = super+alt+k=goto_split:up
@@ -24,3 +45,15 @@ keybind = super+alt+minus=new_split:down
 keybind = super+alt+enter=toggle_split_zoom
 keybind = super+alt+w=close_surface
 keybind = super+alt+equal=equalize_splits
+
+# Resize splits
+keybind = super+control+shift+alt+arrow_down=resize_split:down,100
+keybind = super+control+shift+alt+arrow_up=resize_split:up,100
+keybind = super+control+shift+alt+arrow_left=resize_split:left,100
+keybind = super+control+shift+alt+arrow_right=resize_split:right,100
+
+# Mouse
+mouse-scroll-multiplier = 0.95
+
+# Fix slowness on Hyprland
+async-backend = epoll
