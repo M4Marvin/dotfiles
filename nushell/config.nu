@@ -1,12 +1,12 @@
 use std/util "path add"
 
 path add ($env.HOME | path join ".cargo" "bin")
-path add ($env.HOME | path join "Library" "pnpm" "bin")
 path add ($env.HOME | path join ".bun" "bin")
 
 if $nu.os-info.name == "macos" {
     path add "/opt/homebrew/bin"
     path add "/opt/homebrew/sbin"
+    path add ($env.HOME | path join "Library" "pnpm" "bin")
 }
 
 source ($nu.default-config-dir | path join "catppuccin_mocha.nu")
