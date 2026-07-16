@@ -21,6 +21,7 @@ Personal dotfiles featuring a cohesive **Catppuccin Mocha** theme across all too
 | Directory jump | zoxide | ✅ | (nushell init) |
 | Completions | carapace | ✅ | (nushell init) |
 | Version mgmt | mise | ✅ | `mise/config.toml` |
+| AI agent | OpenCode | ✅ | `opencode/opencode.jsonc` |
 | Disk usage | dust | ✅ | — |
 | Process viewer | procs | ✅ | — |
 | Man pages | tealdeer | ✅ | — |
@@ -45,6 +46,7 @@ Nushell configs use `$nu.os-info.name` to branch on macOS vs Linux:
 | `git/config` | `~/.gitconfig` | `~/.gitconfig` |
 | `starship.toml` | `~/.config/starship.toml` | `~/.config/starship.toml` |
 | `mise/` | `~/.config/mise/` | `~/.config/mise/` |
+| `opencode/opencode.jsonc` | `~/.config/opencode/opencode.jsonc` | `~/.config/opencode/opencode.jsonc` |
 
 Generated files (not tracked — recreated by tools):
 - `nushell/starship.nu` — `starship init nu | save -f`

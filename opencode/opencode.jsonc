@@ -1,0 +1,59 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  // Permission rules. The LAST matching rule wins, so order is:
+  //   1. broad catch-all (ask)
+  //   2. narrow denials
+  //   3. narrow allowlist
+  // See: https://v2.opencode.ai/permissions
+  "permissions": [
+    // 1. Broad catch-all — anything not matched below will prompt.
+    { "action": "*", "resource": "*", "effect": "ask" },
+
+    // 2. Read defaults (matches the base read policy shipped with agents).
+    { "action": "read", "resource": "*", "effect": "allow" },
+    { "action": "read", "resource": "*.env", "effect": "ask" },
+    { "action": "read", "resource": "*.env.*", "effect": "ask" },
+    { "action": "read", "resource": "*.env.example", "effect": "allow" },
+
+    // 3. Shell: explicit deny for destructive commands.
+    //    These must come AFTER the `*` ask so the deny wins on match.
+    { "action": "shell", "resource": "git rm*", "effect": "deny" },
+    { "action": "shell", "resource": "git push*", "effect": "deny" },
+    { "action": "shell", "resource": "git reset --hard*", "effect": "deny" },
+    { "action": "shell", "resource": "git clean*", "effect": "deny" },
+    { "action": "shell", "resource": "sudo*", "effect": "deny" },
+    { "action": "shell", "resource": "chmod*", "effect": "deny" },
+    { "action": "shell", "resource": "chown*", "effect": "deny" },
+    { "action": "shell", "resource": "rm -rf /*", "effect": "deny" },
+
+    // 4. Shell: narrow allowlist for safe git subcommands.
+    { "action": "shell", "resource": "git status *", "effect": "allow" },
+    { "action": "shell", "resource": "git log *", "effect": "allow" },
+    { "action": "shell", "resource": "git diff *", "effect": "allow" },
+    { "action": "shell", "resource": "git show *", "effect": "allow" },
+    { "action": "shell", "resource": "git add *", "effect": "allow" },
+    { "action": "shell", "resource": "git commit *", "effect": "allow" },
+    { "action": "shell", "resource": "git fetch *", "effect": "allow" },
+    { "action": "shell", "resource": "git pull *", "effect": "allow" },
+    { "action": "shell", "resource": "git stash *", "effect": "allow" },
+    { "action": "shell", "resource": "git branch *", "effect": "allow" },
+
+    // 5. Package manager — narrow, since `pnpm dlx` and `pnpm exec` execute arbitrary code.
+    { "action": "shell", "resource": "pnpm install *", "effect": "allow" },
+    { "action": "shell", "resource": "pnpm add *", "effect": "allow" },
+    { "action": "shell", "resource": "pnpm run *", "effect": "allow" },
+    { "action": "shell", "resource": "pnpm test *", "effect": "allow" },
+    { "action": "shell", "resource": "pnpm lint *", "effect": "allow" },
+    { "action": "shell", "resource": "pnpm format *", "effect": "allow" },
+    { "action": "shell", "resource": "pnpm exec tsc*", "effect": "allow" },
+    { "action": "shell", "resource": "pnpm migrate *", "effect": "allow" },
+    { "action": "shell", "resource": "pnpm db:studio *", "effect": "allow" }
+  ],
+
+  "agents": {
+    "plan": {
+      "system": "You are a planning and research agent. Your purpose is to create thorough plans, analyze codebases, research approaches, and provide recommendations. You must NOT make any code edits, write files, or apply patches. Do not attempt to use edit, write, or patch tools — they will be denied. Focus on exploration, analysis, and producing clear text-based plans and summaries. Use read, glob, grep, websearch, webfetch, and shell commands to gather information and understand the codebase, then present your findings and proposed approach. Never modify files."
+    }
+  }
+}
