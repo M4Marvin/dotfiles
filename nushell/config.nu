@@ -51,3 +51,11 @@ if $nu.os-info.name == "macos" {
 
 $env.config.show_banner = false
 $env.config.buffer_editor = "nvim"
+
+$env.config.hooks.pre_prompt = ($env.config.hooks.pre_prompt | default [])
+$env.config.hooks.pre_prompt = ($env.config.hooks.pre_prompt | append {
+    condition: {|| $env.LAST_EXIT_CODE != 0 and $env.LAST_EXIT_CODE != null }
+    code: {||
+        job spawn { ^afplay ($nu.default-config-dir | path join "sounds" "faaah.mp3") } | ignore
+    }
+})
