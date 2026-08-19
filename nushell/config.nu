@@ -2,6 +2,8 @@ use std/util "path add"
 
 path add ($env.HOME | path join ".cargo" "bin")
 path add ($env.HOME | path join ".bun" "bin")
+path add ($env.HOME | path join ".opencode" "bin")
+path add ($env.HOME | path join ".grok" "bin")
 
 if $nu.os-info.name == "macos" {
     path add "/opt/homebrew/bin"
@@ -20,6 +22,9 @@ $env.config.completions.external = {
     enable: true
     max_results: 100
 }
+
+# NoteBrain completions (also restores the carapace completer for other commands)
+source ($nu.default-config-dir | path join notebrain.nu)
 
 use ($nu.default-config-dir | path join mise.nu)
 
