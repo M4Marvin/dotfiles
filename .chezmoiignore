@@ -1,7 +1,7 @@
 # Tool-generated files - regenerated per machine
-dot_config/nushell/starship.nu
-dot_config/nushell/carapace.nu
-dot_config/nushell/mise.nu
-dot_config/nushell/history.txt
+.config/nushell/starship.nu
+.config/nushell/carapace.nu
+.config/nushell/mise.nu
+.config/nushell/history.txt
 # Per-machine auth state - never synced
-dot_config/gh/hosts.yml
+.config/gh/hosts.yml
