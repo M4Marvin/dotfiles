@@ -5,3 +5,7 @@
 .config/nushell/history.txt
 # Per-machine auth state - never synced
 .config/gh/hosts.yml
+
+# Repo documentation - never deployed to $HOME
+README.md
+docs
