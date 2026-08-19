@@ -7,8 +7,10 @@
 **/*.log
 
 # Generated configs (rebuilt by tools)
-nushell/starship.nu
-nushell/carapace.nu
-nushell/mise.nu
+dot_config/nushell/starship.nu
+dot_config/nushell/carapace.nu
+dot_config/nushell/mise.nu
+dot_config/nushell/history.txt
 
-nushell/history.txt
+# Per-machine auth state (do NOT sync gh tokens)
+dot_config/gh/hosts.yml
