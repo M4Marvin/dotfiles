@@ -2,22 +2,21 @@
   "$schema": "https://opencode.ai/config.json",
 
   // Permission rules. The LAST matching rule wins, so order is:
-  //   1. broad catch-all (ask)
-  //   2. narrow denials
-  //   3. narrow allowlist
-  // See: https://v2.opencode.ai/permissions
+  //   1. broad default: allow everything
+  //   2. prompt before reading env files (may hold secrets)
+  //   3. hard denies for destructive commands
+  // See: https://opencode.ai/v2/docs/permissions
   "permissions": [
-    // 1. Broad catch-all — anything not matched below will prompt.
-    { "action": "*", "resource": "*", "effect": "ask" },
+    // 1. Broad default — allow every action; the exceptions below override it.
+    { "action": "*", "resource": "*", "effect": "allow" },
 
-    // 2. Read defaults (matches the base read policy shipped with agents).
-    { "action": "read", "resource": "*", "effect": "allow" },
+    // 2. Env files still prompt.
     { "action": "read", "resource": "*.env", "effect": "ask" },
     { "action": "read", "resource": "*.env.*", "effect": "ask" },
     { "action": "read", "resource": "*.env.example", "effect": "allow" },
 
-    // 3. Shell: explicit deny for destructive commands.
-    //    These must come AFTER the `*` ask so the deny wins on match.
+    // 3. Shell: hard deny for destructive commands.
+    //    These come AFTER the broad allow so the deny wins on match.
     { "action": "shell", "resource": "git rm*", "effect": "deny" },
     { "action": "shell", "resource": "git push*", "effect": "deny" },
     { "action": "shell", "resource": "git reset --hard*", "effect": "deny" },
@@ -25,30 +24,7 @@
     { "action": "shell", "resource": "sudo*", "effect": "deny" },
     { "action": "shell", "resource": "chmod*", "effect": "deny" },
     { "action": "shell", "resource": "chown*", "effect": "deny" },
-    { "action": "shell", "resource": "rm -rf /*", "effect": "deny" },
-
-    // 4. Shell: narrow allowlist for safe git subcommands.
-    { "action": "shell", "resource": "git status *", "effect": "allow" },
-    { "action": "shell", "resource": "git log *", "effect": "allow" },
-    { "action": "shell", "resource": "git diff *", "effect": "allow" },
-    { "action": "shell", "resource": "git show *", "effect": "allow" },
-    { "action": "shell", "resource": "git add *", "effect": "allow" },
-    { "action": "shell", "resource": "git commit *", "effect": "allow" },
-    { "action": "shell", "resource": "git fetch *", "effect": "allow" },
-    { "action": "shell", "resource": "git pull *", "effect": "allow" },
-    { "action": "shell", "resource": "git stash *", "effect": "allow" },
-    { "action": "shell", "resource": "git branch *", "effect": "allow" },
-
-    // 5. Package manager — narrow, since `pnpm dlx` and `pnpm exec` execute arbitrary code.
-    { "action": "shell", "resource": "pnpm install *", "effect": "allow" },
-    { "action": "shell", "resource": "pnpm add *", "effect": "allow" },
-    { "action": "shell", "resource": "pnpm run *", "effect": "allow" },
-    { "action": "shell", "resource": "pnpm test *", "effect": "allow" },
-    { "action": "shell", "resource": "pnpm lint *", "effect": "allow" },
-    { "action": "shell", "resource": "pnpm format *", "effect": "allow" },
-    { "action": "shell", "resource": "pnpm exec tsc*", "effect": "allow" },
-    { "action": "shell", "resource": "pnpm migrate *", "effect": "allow" },
-    { "action": "shell", "resource": "pnpm db:studio *", "effect": "allow" }
+    { "action": "shell", "resource": "rm -rf /*", "effect": "deny" }
   ],
 
   "agents": {
