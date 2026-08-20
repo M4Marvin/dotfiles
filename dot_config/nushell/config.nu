@@ -64,9 +64,9 @@ $env.config.hooks.pre_prompt = ($env.config.hooks.pre_prompt | append {
         let sound = ($nu.default-config-dir | path join "sounds" "faaah.mp3")
         job spawn {
             if $nu.os-info.name == "macos" {
-                ^afplay $sound
+                ^afplay -v 0.4 $sound
             } else {
-                ^paplay $sound
+                ^paplay --volume=26214 $sound
             }
         } | ignore
     }
