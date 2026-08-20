@@ -61,6 +61,13 @@ $env.config.hooks.pre_prompt = ($env.config.hooks.pre_prompt | default [])
 $env.config.hooks.pre_prompt = ($env.config.hooks.pre_prompt | append {
     condition: {|| $env.LAST_EXIT_CODE != 0 and $env.LAST_EXIT_CODE != null }
     code: {||
-        job spawn { ^afplay ($nu.default-config-dir | path join "sounds" "faaah.mp3") } | ignore
+        let sound = ($nu.default-config-dir | path join "sounds" "faaah.mp3")
+        job spawn {
+            if $nu.os-info.name == "macos" {
+                ^afplay $sound
+            } else {
+                ^paplay $sound
+            }
+        } | ignore
     }
 })
