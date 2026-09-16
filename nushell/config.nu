@@ -2,6 +2,7 @@ use std/util "path add"
 
 path add ($env.HOME | path join ".cargo" "bin")
 path add ($env.HOME | path join ".bun" "bin")
+path add ($env.HOME | path join ".local" "bin")
 
 if $nu.os-info.name == "macos" {
     path add "/opt/homebrew/bin"
@@ -52,10 +53,32 @@ if $nu.os-info.name == "macos" {
 $env.config.show_banner = false
 $env.config.buffer_editor = "nvim"
 
+def killport [port: int] {
+    let pids = (^lsof -i $":($port)" -t
+        | lines
+        | str trim
+        | where {|l| not ($l | is-empty)}
+        | into int
+    )
+
+    if ($pids | is-empty) {
+        print $"No process found on port ($port)"
+        return
+    }
+
+    for pid in $pids {
+        let cmd = (^ps -p $pid -o comm= | str trim)
+        print $"($cmd) \(pid ($pid)\) on port ($port)"
+        ^kill $pid
+    }
+
+    print $"Killed (($pids | length)) process\(es\) on port ($port)"
+}
+
 $env.config.hooks.pre_prompt = ($env.config.hooks.pre_prompt | default [])
 $env.config.hooks.pre_prompt = ($env.config.hooks.pre_prompt | append {
     condition: {|| $env.LAST_EXIT_CODE != 0 and $env.LAST_EXIT_CODE != null }
     code: {||
-        job spawn { ^afplay ($nu.default-config-dir | path join "sounds" "faaah.mp3") } | ignore
+        job spawn { ^afplay -v 0.5 ($nu.default-config-dir | path join "sounds" "faaah.mp3") } | ignore
     }
 })
