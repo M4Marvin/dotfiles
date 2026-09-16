@@ -1,6 +1,5 @@
 [tools]
 bun = "latest"
-codex = "latest"
 node = "latest"
-opencode = "latest"
+pi = "latest"
 pnpm = "latest"

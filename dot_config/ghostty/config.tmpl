@@ -4,7 +4,11 @@ config-file = ?"~/.local/state/omarchy/current/theme/ghostty.conf"
 theme = Catppuccin Mocha
 font-family = Google Sans Code NF
 font-size = 16
+{{- if eq .chezmoi.os "darwin" }}
+command = /opt/homebrew/bin/fish
+{{- else }}
 command = {{ .chezmoi.homeDir }}/.cargo/bin/nu
+{{- end }}
 background-opacity = 0.95
 
 # Window
